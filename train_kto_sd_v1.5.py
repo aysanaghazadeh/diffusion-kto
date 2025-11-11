@@ -1043,14 +1043,14 @@ def main(args):
             return examples
 
         if args.policy == "gt_label_w_l":
-            data = data[~(data.label == "intersections")]
-            data["label"] = data.label == "exclusive_win"
+            data = data[~(data.split == "intersections")]
+            data["label"] = data.split == "exclusive_win"
         elif args.policy == "gt_label_wi_l":  # move intersection to win
-            data["label"] = (data.label == "exclusive_win") | (
-                data.label == "intersections"
+            data["label"] = (data.split == "exclusive_win") | (
+                data.split == "intersections"
             )
         elif args.policy == "gt_label_w_il":  # move intersection to lose
-            data["label"] = data.label == "exclusive_win"
+            data["label"] = data.split == "exclusive_win"
         else:
             raise NotImplemented
 
