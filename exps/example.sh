@@ -1,6 +1,6 @@
 export MODEL_NAME="runwayml/stable-diffusion-v1-5"
-export OUTPUT_DIR=""  #add output path here
-PICK="" # add data path here
+export OUTPUT_DIR="../models/KPO"  #add output path here
+export PICK="../Data/RLHF_ads" # add data path here
 accelerate launch --config_file config.json --num_processes 4 train_kto_sd_v1.5.py \
   --resolution 512 \
   --pretrained_model_name_or_path=$MODEL_NAME  \
@@ -28,7 +28,6 @@ accelerate launch --config_file config.json --num_processes 4 train_kto_sd_v1.5.
   --loss kto \
   --halo sigmoid \
   --positive_ratio 0.8 \
-  --enable_xformers_memory_efficient_attention \
   --fixed_noise ${@}
 
   
