@@ -1520,7 +1520,8 @@ def main(args):
                 else:
                     raise NotImplemented
                 print("loss dtype:", loss.dtype)
-                accelerator.backward(loss)
+                # accelerator.backward(loss)
+                loss.backward()
                 if accelerator.sync_gradients:
                     if args.use_ema and (global_step + 1) % 20 == 0:
                         ema_unet.step(unet.parameters())
