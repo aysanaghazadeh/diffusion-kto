@@ -1519,6 +1519,7 @@ def main(args):
                     loss = l_kto.mean()
                 else:
                     raise NotImplemented
+                print("loss dtype:", loss.dtype)
                 accelerator.backward(loss)
                 if accelerator.sync_gradients:
                     if args.use_ema and (global_step + 1) % 20 == 0:
