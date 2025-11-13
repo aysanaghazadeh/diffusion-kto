@@ -1420,7 +1420,7 @@ def main(args):
                     with torch.no_grad():
                         print(weight_dtype)
                         print(accelerator.device)
-                        ref_unet.to(accelerator.device, dtype=weight_dtype)
+                        ref_unet.to(accelerator.device, dtype=torch.float32)
                         ref_preds = ref_unet(
                             noisy_model_input.to(weight_dtype),
                             timesteps,
