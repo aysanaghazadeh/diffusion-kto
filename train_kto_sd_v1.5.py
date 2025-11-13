@@ -1418,8 +1418,6 @@ def main(args):
                     raw_ref_loss = ref_loss.mean()
                 else:
                     with torch.no_grad():
-                        print(weight_dtype)
-                        print(accelerator.device)
                         ref_unet.to(accelerator.device, dtype=torch.float32)
                         ref_preds = ref_unet(
                             noisy_model_input.to(weight_dtype),
@@ -1521,7 +1519,6 @@ def main(args):
                     loss = l_kto.mean()
                 else:
                     raise NotImplemented
-                print("loss dtype:", loss.dtype)
                 accelerator.backward(loss)
                 # loss.backward()
                 if accelerator.sync_gradients:
