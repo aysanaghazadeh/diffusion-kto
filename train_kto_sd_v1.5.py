@@ -1524,12 +1524,12 @@ def main(args):
                 print("loss dtype:", loss.dtype)
                 # accelerator.backward(loss)
                 loss.backward()
-                if accelerator.sync_gradients:
-                    if args.use_ema and (global_step + 1) % 20 == 0:
-                        ema_unet.step(unet.parameters())
-                    if args.reference_ema and (global_step + 1) % 20 == 0:
-                        reference_model.step(unet.parameters())
-                    accelerator.clip_grad_norm_(params_to_optimize, args.max_grad_norm)
+                # if accelerator.sync_gradients:
+                #     if args.use_ema and (global_step + 1) % 20 == 0:
+                #         ema_unet.step(unet.parameters())
+                #     if args.reference_ema and (global_step + 1) % 20 == 0:
+                #         reference_model.step(unet.parameters())
+                #     accelerator.clip_grad_norm_(params_to_optimize, args.max_grad_norm)
                 optimizer.step()
                 lr_scheduler.step()
                 optimizer.zero_grad()
