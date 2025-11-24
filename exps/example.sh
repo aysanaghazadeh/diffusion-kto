@@ -1,7 +1,7 @@
 export MODEL_NAME="runwayml/stable-diffusion-v1-5"
-export OUTPUT_DIR="../models/KPO"  #add output path here
-export PICK="../Data/RLHF_ads" # add data path here
-accelerate launch --config_file config.json --num_processes 4 train_kto_sd_v1.5.py \
+export OUTPUT_DIR="../models/KPO_sensation_aim"  #add output path here
+export PICK="../Data/RLHF_DATA_sensation_aim" # add data path here
+accelerate launch train_kto_sd_v1.5.py \
   --resolution 512 \
   --pretrained_model_name_or_path=$MODEL_NAME  \
   --train_data_dir=$PICK \
@@ -18,7 +18,7 @@ accelerate launch --config_file config.json --num_processes 4 train_kto_sd_v1.5.
   --lr_scheduler="constant" \
   --learning_rate=1e-07 --lr_scheduler="constant_with_warmup" --lr_warmup_steps=200 \
   --max_train_steps=20000 \
-  --checkpointing_steps=5000 \
+  --checkpointing_steps=500 \
   --run_validation --validation_steps=50 \
   --seed="0" \
   --report_to="wandb" \
