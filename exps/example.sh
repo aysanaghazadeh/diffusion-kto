@@ -19,7 +19,7 @@ accelerate launch train_kto_sd_v1.5.py \
   --learning_rate=1e-07 --lr_scheduler="constant_with_warmup" --lr_warmup_steps=200 \
   --max_train_steps=20000 \
   --checkpointing_steps=500 \
-  --run_validation --validation_steps=50 \
+  --run_validation --validation_steps=50 --validation_prompt='Generate an advertisement image that evokes the weightlessness sensation and conveys the following messages: \n I shoud drink this beer because it is light' \
   --seed="0" \
   --report_to="wandb" \
   --checkpoints_total_limit 4 \
